@@ -6,15 +6,63 @@ class deposito extends StatefulWidget {
 }
 
 class _depositoState extends State<deposito> {
-  String ddBank = "1";
+  String ddBank = "mandiri";
   String ddBln = "1";
-  int amount = 0;
+  double amount = 0;
   double res = 0;
 
   void count()
   {
     setState(() {
-      
+      if(ddBank == "mandiri" && ddBln == "1")
+      {
+        res = amount + (((amount*2/100)/12)*1);        
+      }
+      else if(ddBank == "mandiri" && ddBln == "3")
+      {
+        res = amount + (((amount*3/100)/12)*3);
+      }
+      else if(ddBank == "mandiri" && ddBln == "6")
+      {
+        res = amount + (((amount*3/100)/12)*6);
+      }
+      else if(ddBank == "jtrust" && ddBln == "1")
+      {
+        res = amount + (((amount*3.75/100)/12)*1);
+      }
+      else if(ddBank == "jtrust" && ddBln == "3")
+      {
+        res = amount + (((amount*4/100)/12)*3);
+      }
+      else if(ddBank == "jtrust" && ddBln == "6")
+      {
+        res = amount + (((amount*4/100)/12)*6);
+      }
+      else if(ddBank == "bni" && ddBln == "1")
+      {
+        res = amount + (((amount*2.85/100)/12)*1);
+      }
+      else if(ddBank == "bni" && ddBln == "3")
+      {
+        res = amount + (((amount*2.85/100)/12)*3);
+      }
+      else if(ddBank == "bni" && ddBln == "6")
+      {
+        res = amount + (((amount*2.85/100)/12)*6);
+      }
+      else if(ddBank == "cimb" && ddBln == "1")
+      {
+        res = amount + (((amount*3.2/100)/12)*1);
+      }
+      else if(ddBank == "cimb" && ddBln == "3")
+      {
+        res = amount + (((amount*3.5/100)/12)*3);
+      }
+      else if(ddBank == "cimb" && ddBln == "6")
+      {
+        res = amount + (((amount*3.5/100)/12)*6);
+      }
+      print(res);
     });
   }
 
@@ -42,12 +90,12 @@ class _depositoState extends State<deposito> {
               DropdownButton<String>(
                 items: [
                   DropdownMenuItem<String>(
-                      value: "1", child: Text("Bank Mandiri")),
+                      value: "mandiri", child: Text("Bank Mandiri")),
                   DropdownMenuItem<String>(
-                      value: "2", child: Text("Bank J Trust")),
-                  DropdownMenuItem<String>(value: "3", child: Text("Bank BNI")),
+                      value: "jtrust", child: Text("Bank J Trust")),
+                  DropdownMenuItem<String>(value: "bni", child: Text("Bank BNI")),
                   DropdownMenuItem<String>(
-                      value: "4", child: Text("Bank CIMB Niaga")),
+                      value: "cimb", child: Text("Bank CIMB Niaga")),
                 ],
                 value: ddBank,
                 hint: Text("Contoh dropdown button"),
@@ -61,8 +109,8 @@ class _depositoState extends State<deposito> {
               DropdownButton<String>(
                 items: [
                   DropdownMenuItem<String>(value: "1", child: Text("1 Bulan")),
-                  DropdownMenuItem<String>(value: "2", child: Text("3 Bulan")),
-                  DropdownMenuItem<String>(value: "3", child: Text("6 Bulan")),
+                  DropdownMenuItem<String>(value: "3", child: Text("3 Bulan")),
+                  DropdownMenuItem<String>(value: "6", child: Text("6 Bulan")),
                 ],
                 value: ddBln,
                 hint: Text("Contoh dropdown button"),
@@ -74,8 +122,8 @@ class _depositoState extends State<deposito> {
                 },
               ),
               TextField(
-                onSubmitted: (String _val){
-                  amount = int.parse(_val);
+                onChanged: (String _val){
+                  amount = double.parse(_val);
                   print(amount);
                 },
                 decoration: InputDecoration(labelText: "Amount")
